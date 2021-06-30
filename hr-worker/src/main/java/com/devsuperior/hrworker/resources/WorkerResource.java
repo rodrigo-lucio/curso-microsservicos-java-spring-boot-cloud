@@ -47,7 +47,7 @@ public class WorkerResource {
 //			e.printStackTrace();
 //		}
 //		
-		logger.info("PORT=" + env.getProperty("local.server.port"));
+		logger.info("PORT WORKER=" + env.getProperty("local.server.port"));
 		
 		Worker worker = workerRepository.findById(id).orElse(null);
 		return Objects.isNull(worker) ? ResponseEntity.notFound().build() : ResponseEntity.ok(worker);
