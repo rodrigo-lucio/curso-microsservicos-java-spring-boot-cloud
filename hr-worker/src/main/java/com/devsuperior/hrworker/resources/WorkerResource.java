@@ -39,13 +39,13 @@ public class WorkerResource {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
 
-// Caso queira testar a tolererancia a falha do hystrix.
-//		try {
-//			Thread.sleep(1000L);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+// Caso queira testar a tolererancia a falha do hystrix ou do zuul
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		
 		logger.info("PORT WORKER=" + env.getProperty("local.server.port"));
 		
