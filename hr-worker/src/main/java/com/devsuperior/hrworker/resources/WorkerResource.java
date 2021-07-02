@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,18 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devsuperior.hrworker.entities.Worker;
 import com.devsuperior.hrworker.repositories.WorkerRepository;
 
-
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 
 	private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
-	
+
+	@Value("${test.config}")
+	private String testConfig;
+
 	@Autowired
 	private Environment env;
-	
+
 	@Autowired
 	private WorkerRepository workerRepository;
+
+	@GetMapping(value = "/configs")
+	public ResponseEntity<Void> getConfigs() {
+		logger.info("CONFIG=" + testConfig);
+		return ResponseEntity.noContent().build();
+	}
 
 	@GetMapping
 	public ResponseEntity<Page<Worker>> findAll(Pageable pageable) {
@@ -48,7 +57,7 @@ public class WorkerResource {
 		}
 //		
 		logger.info("PORT WORKER=" + env.getProperty("local.server.port"));
-		
+
 		Worker worker = workerRepository.findById(id).orElse(null);
 		return Objects.isNull(worker) ? ResponseEntity.notFound().build() : ResponseEntity.ok(worker);
 	}
