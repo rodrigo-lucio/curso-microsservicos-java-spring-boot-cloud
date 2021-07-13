@@ -38,30 +38,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		clients.inMemory()
 			.withClient("myappname123")
 			.secret(passwordEncoder.encode("myappsecret123"))
-			.scopes("read, write")
+			.scopes("read", "write")
 			.authorizedGrantTypes("password")
 			.accessTokenValiditySeconds(86400);
 	}	
-	
-	
-	
+
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints.authenticationManager(authenticationManager)
 			.tokenStore(tokenStore)
 			.accessTokenConverter(accessTokenConverter);
-		String nome = "rodrigo";
-		
-		String valor = "treasda";
-		
-		String teste = "teste";
-		
-		
-		
-		
-		System.out.println(nome.toString())
-		
+
 	}
-	
 	
 }
