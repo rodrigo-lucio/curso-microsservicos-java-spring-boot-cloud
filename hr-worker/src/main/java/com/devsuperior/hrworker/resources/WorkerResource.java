@@ -26,7 +26,8 @@ public class WorkerResource {
 
 	private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
 
-	@Value("${test.config}")
+//	@Value("${test.config}")
+  	@Value("${spring.datasource.url}")
 	private String testConfig;
 
 	@Autowired
