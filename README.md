@@ -46,9 +46,9 @@ docker build -t hr-eureka-server:v1 .
 docker run -p 8761:8761 --name hr-eureka-server --network hr-net hr-eureka-server:v1
 ```
 
-OBS: 
-Não passar o nome quando for escalar e rodar mais de uma instancia
-Isso vale para: hr-worker, hr-user, hr-payroll e hr-oauth.
+##OBS: 
+##Não passar o nome quando for escalar e rodar mais de uma instância
+##Isso vale para: hr-worker, hr-user, hr-payroll e hr-oauth.
 
 ## hr-worker
 ```
