@@ -4,7 +4,7 @@
 - Basta fazer o build de cada um dos microsserviços, e logo após, fazer o build de cada imagem
 - Abaixo estão os comandos utilizados
 
-### Criar rede docker para sistema hr
+### Criar rede docker o projeto
 ```
 docker network create hr-net
 ```
