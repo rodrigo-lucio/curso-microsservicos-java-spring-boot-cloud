@@ -1,11 +1,15 @@
-# Criando e testando containers Docker
+## :whale: Criando e testando o projeto em containers Docker
 
-## Criar rede docker para sistema hr
+- Nesta branch, todos os projetos est√£o configurados para rodar em ambiente docker
+- Basta fazer o build de cada um dos microsservi√ßos, e logo ap√≥s, fazer o build de cada imagem
+- Abaixo est√£o os comandos utilizados
+
+### Criar rede docker para sistema hr
 ```
 docker network create hr-net
 ```
 
-## Testando perfil dev com Postgresql no Docker
+### Testando perfil dev com PostgreSQL no Docker
 ```
 docker pull postgres:12-alpine
 
@@ -14,7 +18,7 @@ docker run -p 5432:5432 --name hr-worker-pg12 --network hr-net -e POSTGRES_PASSW
 docker run -p 5432:5432 --name hr-user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_hr_user postgres:12-alpine
 ```
 
-## hr-config-server
+### hr-config-server
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -30,7 +34,7 @@ docker build -t hr-config-server:v1 .
 docker run -p 8888:8888 --name hr-config-server --network hr-net -e GITHUB_USER=acenelio -e GITHUB_PASS= hr-config-server:v1
 ```
 
-## hr-eureka-server
+### hr-eureka-server
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -46,9 +50,9 @@ docker build -t hr-eureka-server:v1 .
 docker run -p 8761:8761 --name hr-eureka-server --network hr-net hr-eureka-server:v1
 ```
 
-### OBS: N„o passar o par‚metro --name quando for escalar e rodar mais de uma inst‚ncia. Isso vale para: hr-worker, hr-user, hr-payroll e hr-oauth. Rodando mais de uma inst‚ncia, a porta È gerada de forma aleatÛria e o balanceamento de carga È feito autom·ticamente.
+- OBS: N√£o passar o par√¢metro --name quando for escalar e rodar mais de uma inst√¢ncia. Isso vale para: hr-worker, hr-user, hr-payroll e hr-oauth. Rodando mais de uma inst√¢ncia, a porta √© gerada de forma aleat√≥ria e o balanceamento de carga √© feito automaticamente.
 
-## hr-worker
+### hr-worker
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -63,7 +67,7 @@ docker build -t hr-worker:v1 .
 docker run -P --name hr-worker --network hr-net hr-worker:v1 
 ```
 
-## hr-user
+### hr-user
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -78,7 +82,7 @@ docker build -t hr-user:v1 .
 docker run -P --name hr-user --network hr-net hr-user:v1
 ```
 
-## hr-payroll
+### hr-payroll
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -93,7 +97,7 @@ docker build -t hr-payroll:v1 .
 docker run -P --name hr-payroll --network hr-net hr-payroll:v1
 ```
 
-## hr-oauth
+### hr-oauth
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -108,7 +112,7 @@ docker build -t hr-oauth:v1 .
 docker run -P --name hr-oauth --network hr-net hr-oauth:v1
 ```
 
-## hr-api-gateway-zuul
+### hr-api-gateway-zuul
 ```
 FROM openjdk:11
 VOLUME /tmp
@@ -124,7 +128,7 @@ docker build -t hr-api-gateway-zuul:v1 .
 docker run -p 8765:8765 --name hr-api-gateway-zuul --network hr-net hr-api-gateway-zuul:v1
 ```
 
-## Alguns comandos Docker
+### Alguns comandos Docker
 Criar uma rede Docker
 ```
 docker network create <nome-da-rede>
@@ -147,7 +151,7 @@ docker ps
 
 docker ps -a
 ```
-Acompanhar logs do container em execuÁ„o
+Acompanhar logs do container em execu√ß√£o
 ```
 docker logs -f <container-id>
 ```
