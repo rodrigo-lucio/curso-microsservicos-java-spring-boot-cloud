@@ -15,3 +15,8 @@
 - Para utilizar com containers, basta fazer o build de cada um dos microsserviços, e logo após, fazer o build de cada imagem.
 - Os microsserviços configurados para utilizar em ambiente docker estão nesta [branch](https://github.com/rodrigo-lucio/curso-microsservicos-java-spring-boot-cloud/tree/docker) 
 - Os arquivos das imagens e comandos para rodar os containers também encontram-se nesta branch específica.
+
+## :office: A aplicação:
+<h1 align="center">
+    <img height="600" width="800" src=".github/diagrama.png" />
+</h1>
